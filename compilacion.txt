@@ -1,0 +1,4 @@
+flex ej1.l
+bison -yd ej1.y
+gcc lex.yy.c y.tab.c -lfl -w
+a entrada.txt      (ojo en cmd)
