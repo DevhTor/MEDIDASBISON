@@ -1,6 +1,6 @@
-T  29  P
-C  23  M
-T  49  P
-C  129  P
-C  19  M
-C  65  P
+T 29 P
+C 23 M
+T 49 P
+C 129 P
+C 19 M
+C 65 P

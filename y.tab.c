@@ -78,9 +78,9 @@ En el arcivo de entrada los triangulos tienen una T y los cuadrilateros una C en
 columna. En la tercera columna las unidades de medidas M= Metros y P = Pies. 
 Las unides de medidas siempre deben de presentarse en Metros.
 */
-int numMedidasTriangulos = 0;
-int numMedidasCuadrilateros = 0;
+
 #include <stdio.h>
+int numMedidas = 0;
 
 
 /* Line 189 of yacc.c  */
@@ -366,18 +366,18 @@ union yyalloc
 #endif
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  5
+#define YYFINAL  9
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   3
+#define YYLAST   8
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  8
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  2
+#define YYNNTS  5
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  3
+#define YYNRULES  8
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  6
+#define YYNSTATES  13
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
@@ -423,19 +423,21 @@ static const yytype_uint8 yytranslate[] =
    YYRHS.  */
 static const yytype_uint8 yyprhs[] =
 {
-       0,     0,     3,     6
+       0,     0,     3,     5,     8,    10,    13,    16,    19
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-       9,     0,    -1,     7,     5,    -1,     7,     6,    -1
+       9,     0,    -1,    10,    -1,    10,    11,    -1,    11,    -1,
+       3,    12,    -1,     4,    12,    -1,     7,     5,    -1,     7,
+       6,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    24,    24,    25
+       0,    23,    23,    27,    28,    30,    37,    46,    47
 };
 #endif
 
@@ -445,7 +447,8 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "tTriangulo", "tCuadrilatero", "tMetros",
-  "tPies", "tValorMedida", "$accept", "MEDIDA", 0
+  "tPies", "tValorMedida", "$accept", "S", "LISTA_MEDIDAS", "MEDICION",
+  "MEDIDA", 0
 };
 #endif
 
@@ -461,13 +464,13 @@ static const yytype_uint16 yytoknum[] =
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,     8,     9,     9
+       0,     8,     9,    10,    10,    11,    11,    12,    12
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     2,     2
+       0,     2,     1,     2,     1,     2,     2,     2,     2
 };
 
 /* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
@@ -475,13 +478,14 @@ static const yytype_uint8 yyr2[] =
    means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,     0,     2,     3,     1
+       0,     0,     0,     0,     2,     4,     0,     5,     6,     1,
+       3,     7,     8
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2
+      -1,     3,     4,     5,     7
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
@@ -489,13 +493,14 @@ static const yytype_int8 yydefgoto[] =
 #define YYPACT_NINF -6
 static const yytype_int8 yypact[] =
 {
-      -4,    -5,     2,    -6,    -6,    -6
+      -3,    -5,    -5,     5,    -3,    -6,    -2,    -6,    -6,    -6,
+      -6,    -6,    -6
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -6,    -6
+      -6,    -6,    -6,     2,     6
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -505,19 +510,20 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-       3,     4,     5,     1
+       1,     2,     6,    11,    12,     9,    10,     0,     8
 };
 
-static const yytype_uint8 yycheck[] =
+static const yytype_int8 yycheck[] =
 {
-       5,     6,     0,     7
+       3,     4,     7,     5,     6,     0,     4,    -1,     2
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     7,     9,     5,     6,     0
+       0,     3,     4,     9,    10,    11,     7,    12,    12,     0,
+      11,     5,     6
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1331,21 +1337,69 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 24 "ej1.y"
-    {(yyval.valFloat) = (yyvsp[(1) - (2)].valInt);}
+#line 23 "ej1.y"
+    {printf("Medidas Media en Total: %f M\n",
+(yyvsp[(1) - (1)].valFloat)/(float)numMedidas);}
     break;
 
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 25 "ej1.y"
+#line 27 "ej1.y"
+    {(yyval.valFloat) = (yyvsp[(1) - (2)].valFloat) + (yyvsp[(2) - (2)].valFloat); if((yyvsp[(2) - (2)].valFloat) != 0){numMedidas++;}}
+    break;
+
+  case 4:
+
+/* Line 1455 of yacc.c  */
+#line 28 "ej1.y"
+    {(yyval.valFloat) = (yyvsp[(1) - (1)].valFloat); if((yyvsp[(1) - (1)].valFloat)!=0){numMedidas++;}}
+    break;
+
+  case 5:
+
+/* Line 1455 of yacc.c  */
+#line 30 "ej1.y"
+    { if ((yyvsp[(2) - (2)].valFloat) >= 20) {
+  printf ("Triangulo con Medida: %f M\n", (yyvsp[(2) - (2)].valFloat));
+  (yyval.valFloat)= (yyvsp[(2) - (2)].valFloat);
+  }else{
+  (yyval.valFloat) = 0.0;
+  }
+  }
+    break;
+
+  case 6:
+
+/* Line 1455 of yacc.c  */
+#line 37 "ej1.y"
+    { if ((yyvsp[(2) - (2)].valFloat) >= 20) {
+  printf ("Cuadrilatero con Medida: %f M\n", (yyvsp[(2) - (2)].valFloat));
+  (yyval.valFloat)= (yyvsp[(2) - (2)].valFloat);
+  }else{
+  (yyval.valFloat) = 0.0;
+  }
+  }
+    break;
+
+  case 7:
+
+/* Line 1455 of yacc.c  */
+#line 46 "ej1.y"
+    {(yyval.valFloat) = (yyvsp[(1) - (2)].valInt);}
+    break;
+
+  case 8:
+
+/* Line 1455 of yacc.c  */
+#line 47 "ej1.y"
     {(yyval.valFloat) = (yyvsp[(1) - (2)].valInt) / 3.28;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1349 "y.tab.c"
+#line 1403 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1557,7 +1611,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 28 "ej1.y"
+#line 50 "ej1.y"
 
 int yyerror(char *m){
    fprintf(stderr,"Error: %s\n",m);
